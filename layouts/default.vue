@@ -5,6 +5,17 @@ const toggleDrop = () => {
     drop.value = !drop.value
     console.log(drop.value);
 }
+
+const clientId = ""
+const redirectUri = "http://localhost:3000/fallBack"
+const scopes = 'user-read-private user-read-email';
+const {spotifyID, spotifyKey} = useRuntimeConfig
+
+function loginWithSpotify() {
+  const spotifyAuthUrl = `https://accounts.spotify.com/authorize?client_id=4a008d4c9834431c828be178f1d0e143&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}`;
+  window.location.href = spotifyAuthUrl;
+  
+}
 </script>
 
 <template>
@@ -18,7 +29,7 @@ const toggleDrop = () => {
                     <div class="menu-cont">
                         <div class="icon">
                             <img src="/assets/home.svg" alt="">
-                            <h1>Home</h1>
+                            <p>Home</p>
                         </div>
                         <div @click="toggleDrop" class="drop">
                             <div v-if="!drop">
@@ -31,19 +42,19 @@ const toggleDrop = () => {
                     </div>
                     <div class="sub-cont">
                         <div :class="drop ? 'show' : 'group'">
-                            <NuxtLink to="/" class="link">For You</NuxtLink>
-                            <NuxtLink to="/" class="link">Relax</NuxtLink>
-                            <NuxtLink to="/" class="link">Workout</NuxtLink>
-                            <NuxtLink to="/" class="link">Travel</NuxtLink>
+                            <NuxtLink to="/fyp" class="link">For You</NuxtLink>
+                            <NuxtLink class="link">Relax</NuxtLink>
+                            <NuxtLink class="link">Workout</NuxtLink>
+                            <NuxtLink class="link">Travel</NuxtLink>
                         </div>
                     </div>
                 </div>
 
                 <div class="browse">
                     <div class="sub-browse">
-                        <NuxtLink to="/" class="icon brow">
+                        <NuxtLink class="icon brow">
                             <img src="/assets/search.svg" alt="">
-                            <h1>Browse Music</h1>
+                            <p>Browse Music</p>
                         </NuxtLink>
                     </div>
                 </div>
@@ -52,15 +63,15 @@ const toggleDrop = () => {
                     <div class="menu-cont">
                         <div class="icon">
                             <img src="/assets/library.svg" alt="">
-                            <h1>Your Library</h1>
+                            <p>Your Library</p>
                         </div>
                         <span class="drop"><img src="/assets/arrow-down.svg" alt=""></span>
                     </div>
                     <div class="sub-cont">
                         <div class="group">
-                            <NuxtLink to="/" class="link">Liked Songs</NuxtLink>
-                            <NuxtLink to="/" class="link">Playlists</NuxtLink>
-                            <NuxtLink to="/" class="link">Artists Following</NuxtLink>
+                            <NuxtLink class="link">Liked Songs</NuxtLink>
+                            <NuxtLink class="link">Playlists</NuxtLink>
+                            <NuxtLink class="link">Artists Following</NuxtLink>
                         </div>
                     </div>
                 </div>
@@ -84,7 +95,7 @@ const toggleDrop = () => {
 
                     <div class="login">
                         <span><img src="/assets//bell.svg" alt=""></span>
-                        <div><button>login</button></div>
+                        <div><button @click="loginWithSpotify">login</button></div>
                     </div>
                 </div>
             </div>
@@ -99,6 +110,11 @@ const toggleDrop = () => {
 </template>
 
 <style>
+.router-link-exact-active{
+    color:  white !important;
+    background-color: gray;
+}
+
 body {
     margin: 0;
     font-family: sans-serif;
@@ -183,9 +199,10 @@ body {
 }
 
 .link {
+    width: 85%;
     font-size: 1.3rem;
     text-decoration: none;
-    padding: 0.3em 0;
+    padding: 0.3em 0.5em;
     margin: 0.2em 0;
     border-radius: 5px;
     color: gray;

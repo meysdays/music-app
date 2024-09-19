@@ -1,0 +1,70 @@
+<script setup>
+// import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const { storeToken } = useSpotifyAuth();
+const route = useRoute();
+
+const code = route.query.code;
+console.log(code);
+
+const redirectUri = "http://localhost:3000/fallBack";
+
+const clientId = "4a008d4c9834431c828be178f1d0e143";
+const clientSecret = "40fa43a922324e2e96b436840b630828";
+const authHeader = btoa(`${clientId}:${clientSecret}`);
+
+const abc = ref('')
+
+provide('token', abc.value)
+
+
+if (code) {
+    const {data:user,  error} = await useFetch(
+        "https://accounts.spotify.com/api/token",
+        {
+          method: "POST",
+          body: new URLSearchParams({
+            grant_type: "authorization_code",
+            code: code,
+            redirect_uri: redirectUri,
+          }).toString(),
+          headers: {
+            Authorization: `Basic ${authHeader}`,
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+
+      abc.value = user.value
+      console.log(abc.value.access_token);
+      storeToken(abc.value.access_token)
+      
+      router.push('/fyp');
+}
+
+
+
+
+
+// if (code) {
+//     exchangeCodeForToken(code).then(() => {
+//         router.push('/fyp'); 
+//         // console.log(code);
+        
+//     }).catch(error => {
+//         console.error('Error during authentication:', error);
+//         console.log(error);
+//         // console.log(code);
+//     });
+// }
+</script>
+
+<template>
+    <div>
+        <h1>Logging in...</h1>
+    </div>
+</template>
+
+<style>
+</style>
