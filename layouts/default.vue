@@ -127,6 +127,9 @@ body {
 .head-cont {
     display: flex;
     flex-direction: column;
+    position: fixed;
+    background-color: black;
+    height: 100vh;
 }
 
 .head {
@@ -149,9 +152,9 @@ body {
 .menu {
     /* visibility: hidden; */
     width: 20%;
-    background-color: black;
+   
     color: white;
-    height: 100vh;
+    
     /* position: fixed; */
 }
 

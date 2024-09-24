@@ -43,8 +43,9 @@ console.log(abc.value);
     gap: 16px;
     /* background-color: green; */
     width: 90%;
-    height: 80px;
     margin: 0 auto;
+    /* position: relative;
+    left: 25%; */
 }
 
 .fyp {
