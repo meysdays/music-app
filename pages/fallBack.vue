@@ -6,7 +6,7 @@ const { storeToken } = useSpotifyAuth();
 const route = useRoute();
 
 const code = route.query.code;
-console.log(code);
+// console.log(code);
 
 const redirectUri = "http://localhost:3000/fallBack";
 
@@ -16,34 +16,41 @@ const authHeader = btoa(`${clientId}:${clientSecret}`);
 
 const abc = ref('')
 
-provide('token', abc.value)
 
-
-if (code) {
-    const {data:user,  error} = await useFetch(
-        "https://accounts.spotify.com/api/token",
-        {
-          method: "POST",
-          body: new URLSearchParams({
-            grant_type: "authorization_code",
-            code: code,
-            redirect_uri: redirectUri,
-          }).toString(),
-          headers: {
-            Authorization: `Basic ${authHeader}`,
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      );
-
-      abc.value = user.value
-      console.log(abc.value.access_token);
-      storeToken(abc.value.access_token)
+  if (code) {
+    console.log(code, 'songs');
+    
+      const {data: user,  error} = await useFetch(
+          "https://accounts.spotify.com/api/token",
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Basic ${authHeader}`,
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({
+              grant_type: "authorization_code",
+              code: code,
+              redirect_uri: redirectUri,
+            }).toString(),
+          }          
+        );
+        
+        console.log(user.value.access_token, 'music');
+        // abc.value = user.value
       
-      router.push('/fyp');
-}
+        
+        localStorage.setItem('spotifyFile', user.value.access_token)
+        // const token = useState('token', () => localStorage.getItem('spotifyFile'))
+        // console.log(token.value);
+        
+        router.push('/');
+  
+  }
 
 
+  // console.log(abc.value.access_token);     
+  
 
 
 

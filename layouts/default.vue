@@ -6,16 +6,17 @@ const toggleDrop = () => {
     console.log(drop.value);
 }
 
-const clientId = ""
+const router = useRouter();
 const redirectUri = "http://localhost:3000/fallBack"
 const scopes = 'user-read-private user-read-email';
-const {spotifyID, spotifyKey} = useRuntimeConfig
+// const {spotifyID, spotifyKey} = useRuntimeConfig
+
 
 function loginWithSpotify() {
-  const spotifyAuthUrl = `https://accounts.spotify.com/authorize?client_id=4a008d4c9834431c828be178f1d0e143&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}`;
-  window.location.href = spotifyAuthUrl;
-  
+    const spotifyAuthUrl = `https://accounts.spotify.com/authorize?client_id=4a008d4c9834431c828be178f1d0e143&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}`;
+    window.location.href = spotifyAuthUrl;
 }
+
 </script>
 
 <template>
@@ -43,8 +44,8 @@ function loginWithSpotify() {
                     <div class="sub-cont">
                         <div :class="drop ? 'show' : 'group'">
                             <NuxtLink to="/fyp" class="link">For You</NuxtLink>
-                            <NuxtLink class="link">Relax</NuxtLink>
-                            <NuxtLink class="link">Workout</NuxtLink>
+                            <NuxtLink to="/about" class="link">Relax</NuxtLink>
+                            <NuxtLink to="/WorkOut" class="link">Workout</NuxtLink>
                             <NuxtLink class="link">Travel</NuxtLink>
                         </div>
                     </div>
@@ -77,6 +78,7 @@ function loginWithSpotify() {
                 </div>
             </div>
         </div>
+
         <div class="page">
             <div class="nav">
                 <div class="arrow">
@@ -101,7 +103,7 @@ function loginWithSpotify() {
             </div>
 
             <div>
-                <slot/>
+                <slot />
             </div>
         </div>
 
@@ -110,8 +112,8 @@ function loginWithSpotify() {
 </template>
 
 <style>
-.router-link-exact-active{
-    color:  white !important;
+.router-link-exact-active {
+    color: white !important;
     background-color: gray;
 }
 
@@ -145,10 +147,12 @@ body {
 }
 
 .menu {
+    /* visibility: hidden; */
     width: 20%;
     background-color: black;
     color: white;
     height: 100vh;
+    /* position: fixed; */
 }
 
 .menu img {

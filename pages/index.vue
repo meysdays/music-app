@@ -3,18 +3,26 @@ import { useRouter } from 'vue-router';
 import { useSpotifyAuth } from '~/composables/useSpotifyAuth';
 
 const router = useRouter();
-const {exchangeCodeForToken} = useSpotifyAuth();
 const route = useRoute();
 
 const code = route.query.code;
+const token = ref('')
 
-if (code) {
-    exchangeCodeForToken(code).then(() => {
-        router.push('/fyp')
-    }).catch(error =>{
-        console.error('Error during authentication:', error);
-    })
+try {
+    token.value = localStorage.getItem('spotifyFile')
+    console.log(token);
+} catch (error) {
+    console.log(error, 'index');
+
 }
+
+
+if (!token.value) {
+    router.push("/Workout")
+}
+
+const saveToken = useState('token', () => localStorage.getItem('spotifyFile'))
+console.log(saveToken.value);
 </script>
 <template>
     <div>
