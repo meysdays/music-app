@@ -3,29 +3,26 @@
 const tok = ref("")
 const abc = ref({})
 
-onMounted(async () => {
-    const token = useState('token')
-    tok.value = token.value
-    console.log(tok.value);
+const { token } = useSpotifyAuth();
 
-    const { error, data: user } = await useFetch('https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA', {
-        method: "get",
-        headers: {
-            'Authorization': `Bearer ${tok.value}`
+
+    if (token) {
+        const {data} = await useFetch('https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA', {
+            method: "get",
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         }
-    })
-    abc.value = user.value
-    console.log(user);
+        )
+        abc.value = data.value
+    }
     console.log(abc.value);
-
-})
-console.log(abc.value);
+    
 
 
 </script>
 
 <template>
-
     <div class="fyp-cont">
         <div class="fyp" v-for="(lip, index) in abc?.tracks" :key="index">
             <div class="inn-fyp">
@@ -49,29 +46,38 @@ console.log(abc.value);
 }
 
 .fyp {
-    flex: 1 1 230px;
+    flex: 1 1 180px;
     width: 100%;
     /* background-color: blue; */
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 0.5em 0em;
-    border-radius: 20px;
+    border-radius: 7px;
     text-align: center;
 
     /* border: 1px solid black; */
 
 }
-.fyp:hover{
+
+.fyp:hover {
     background-color: rgb(159, 155, 155);
 }
 
 .fyp img {
-    width: 80%;
+    width: 98%; 
     object-fit: cover;
     /* aspect-ratio: 10/12; */
     /* border-radius: 20px; */
 }
-.inn-fyp{
+
+.inn-fyp {
     width: 95%;
     margin: 0 auto;
+    
+}
+
+.artist-name{
+    text-align: left;
+    width: 98%;
+    margin: 0;
 }
 </style>

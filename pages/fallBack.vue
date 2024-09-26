@@ -37,22 +37,12 @@ const abc = ref('')
         );
         
         console.log(user.value.access_token, 'music');
-        // abc.value = user.value
+
+        storeToken(user.value.access_token)
       
-        
-        localStorage.setItem('spotifyFile', user.value.access_token)
-        // const token = useState('token', () => localStorage.getItem('spotifyFile'))
-        // console.log(token.value);
-        
         router.push('/');
   
   }
-
-
-  // console.log(abc.value.access_token);     
-  
-
-
 
 // if (code) {
 //     exchangeCodeForToken(code).then(() => {

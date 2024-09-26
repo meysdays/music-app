@@ -8,7 +8,7 @@ const toggleDrop = () => {
 
 const router = useRouter();
 const redirectUri = "http://localhost:3000/fallBack"
-const scopes = 'user-read-private user-read-email';
+const scopes = 'user-read-private user-read-email playlist-read-private';
 // const {spotifyID, spotifyKey} = useRuntimeConfig
 
 
@@ -145,6 +145,8 @@ body {
 }
 
 .show {
+    display: flex;
+    flex-direction: column;
     height: 0;
     visibility: hidden;
 }
