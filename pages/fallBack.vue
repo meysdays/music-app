@@ -8,7 +8,7 @@ const route = useRoute();
 const code = route.query.code;
 // console.log(code);
 
-const redirectUri = "http://localhost:3000/fallBack";
+const redirectUri = "https://classy-paprenjak-c91f3a.netlify.app/fallBack";
 
 const clientId = "4a008d4c9834431c828be178f1d0e143";
 const clientSecret = "40fa43a922324e2e96b436840b630828";
