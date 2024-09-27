@@ -38,11 +38,9 @@ const { token } = useSpotifyAuth();
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 16px;
-    /* background-color: green; */
     width: 90%;
     margin: 0 auto;
-    /* position: relative;
-    left: 25%; */
+    
 }
 
 .fyp {
@@ -79,5 +77,7 @@ const { token } = useSpotifyAuth();
     text-align: left;
     width: 98%;
     margin: 0;
+    /* background-color: black; */
+    /* height: 0; */
 }
 </style>

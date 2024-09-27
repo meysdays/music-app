@@ -7,8 +7,8 @@ const toggleDrop = () => {
 }
 
 const router = useRouter();
-const redirectUri = "https://classy-paprenjak-c91f3a.netlify.app/fallBack"
-// const redirectUri = "http://localhost:3000/fallBack"
+// const redirectUri = "https://classy-paprenjak-c91f3a.netlify.app/fallBack"
+const redirectUri = "http://localhost:3000/fallBack"
 const scopes = 'user-read-private user-read-email playlist-read-private';
 // const {spotifyID, spotifyKey} = useRuntimeConfig
 
