@@ -1,6 +1,7 @@
 export function useSpotifyAuth() {
 
   const token = localStorage.getItem('spotifyFile')
+  const user = localStorage.getItem('user')
   
   const storeToken = (token) =>{
     localStorage.setItem('spotifyFile', token)    
@@ -9,5 +10,6 @@ export function useSpotifyAuth() {
   return {
     token,
     storeToken,
+    user,
   };
 }

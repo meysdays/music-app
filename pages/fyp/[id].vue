@@ -10,6 +10,8 @@ const code = route.query.code;
 const { token } = useSpotifyAuth()
 
 
+
+
   if (token) {
     try {
       const { data, error: fetchError } = await useFetch(`https://api.spotify.com/v1/albums/${id}/tracks`, {
@@ -48,13 +50,16 @@ const { token } = useSpotifyAuth()
 
 </script>
 <template>
-  <h1>Album Tracks</h1>
+  <!-- <h1>Album Tracks</h1> -->
   <div v-if="error">Error: {{ error.message }}</div>
-    <ul v-if="tracks && tracks.length">
+    <!-- <ul v-if="tracks && tracks.length">
       <li v-for="(track, index) in tracks" :key="index">
         {{ track.track_number }}. {{ track.name }} - {{ track.artists.join(', ') }}
       </li>
-    </ul>
+    </ul> -->
+    <div v-if="tracks && tracks.length">
+      <MusicList :tracks="tracks"/>
+    </div>
     <div v-else>Loading...</div>
 </template>
 

@@ -2,9 +2,13 @@
 // import { NuxtLink } from '#build/components';
 const { song } = defineProps(['song'])
 
+const storeImg = (image) =>{
+    localStorage.setItem('img', image)
+}
+
 </script>
 <template>
-    <NuxtLink :to="`/fyp/${song.album.id}`" class="fyp-inn-cont">
+    <NuxtLink :to="`/fyp/${song.album.id}`"class="fyp-inn-cont" @click="storeImg(song.album.images[0].url)">
         <div>
             <img class="album-img" :src="`${song.album.images[1].url}`" alt="">
             <img class="play" src="/assets/play.svg" alt="">
@@ -37,5 +41,11 @@ const { song } = defineProps(['song'])
 
 .album-img {
     padding-bottom: 0px;
+    width: 100%;
+}
+
+.fyp-inn-cont{
+    text-decoration: none;
+    color: white;
 }
 </style>

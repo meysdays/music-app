@@ -10,7 +10,6 @@ const router = useRouter();
 // const redirectUri = "https://classy-paprenjak-c91f3a.netlify.app/fallBack"
 const redirectUri = "http://localhost:3000/fallBack"
 const scopes = 'user-read-private user-read-email playlist-read-private';
-// const {spotifyID, spotifyKey} = useRuntimeConfig
 
 
 function loginWithSpotify() {
@@ -54,7 +53,7 @@ function loginWithSpotify() {
 
                 <div class="browse">
                     <div class="sub-browse">
-                        <NuxtLink class="icon brow">
+                        <NuxtLink to="/Browse"class="icon brow">
                             <img src="/assets/search.svg" alt="">
                             <p>Browse Music</p>
                         </NuxtLink>
@@ -72,7 +71,7 @@ function loginWithSpotify() {
                     <div class="sub-cont">
                         <div class="group">
                             <NuxtLink class="link">Liked Songs</NuxtLink>
-                            <NuxtLink class="link">Playlists</NuxtLink>
+                            <NuxtLink to="/PlayList" class="link">Playlists</NuxtLink>
                             <NuxtLink class="link">Artists Following</NuxtLink>
                         </div>
                     </div>
@@ -81,6 +80,7 @@ function loginWithSpotify() {
         </div>
 
         <div class="page">
+            <!-- <SearchBar/> -->
             <div class="nav">
                 <div class="arrow">
                     <div>
@@ -98,7 +98,7 @@ function loginWithSpotify() {
 
                     <div class="login">
                         <span><img src="/assets//bell.svg" alt=""></span>
-                        <div><button @click="loginWithSpotify">login</button></div>
+                        <!-- <div><button>login</button></div> -->
                     </div>
                 </div>
             </div>
@@ -240,6 +240,8 @@ body {
 }
 
 .nav {
+    /* visibility: hidden; */
+    /* height: 0; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;

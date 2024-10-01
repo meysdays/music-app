@@ -1,23 +1,21 @@
 <script setup>
-
-const tok = ref("")
 const abc = ref({})
 
 const { token } = useSpotifyAuth();
 
 
-    if (token) {
-        const {data} = await useFetch('https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA', {
-            method: "get",
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
+if (token) {
+    const { data } = await useFetch('https://api.spotify.com/v1/recommendations?seed_genres=afrobeat', {
+        method: "get",
+        headers: {
+            'Authorization': `Bearer ${token}`
         }
-        )
-        abc.value = data.value
     }
-    console.log(abc.value);
-    
+    )
+    abc.value = data.value
+}
+console.log(abc.value);
+
 
 
 </script>
@@ -40,7 +38,7 @@ const { token } = useSpotifyAuth();
     gap: 16px;
     width: 90%;
     margin: 0 auto;
-    
+
 }
 
 .fyp {
@@ -61,7 +59,7 @@ const { token } = useSpotifyAuth();
 }
 
 .fyp img {
-    width: 98%; 
+    width: 98%;
     object-fit: cover;
     /* aspect-ratio: 10/12; */
     /* border-radius: 20px; */
@@ -70,10 +68,10 @@ const { token } = useSpotifyAuth();
 .inn-fyp {
     width: 95%;
     margin: 0 auto;
-    
+
 }
 
-.artist-name{
+.artist-name {
     text-align: left;
     width: 98%;
     margin: 0;
