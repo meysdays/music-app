@@ -23,7 +23,7 @@ const { tracks } = defineProps(['tracks'])
 <template>
     <div>
         <div :style="backgroundStyle" class="img-back">
-            <SearchBar/>
+            <!-- <SearchBar/> -->
             
             <!-- <img :src="backImg" alt=""> -->
         </div>
